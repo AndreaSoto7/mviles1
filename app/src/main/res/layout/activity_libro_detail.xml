@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activities.LibroDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/imgLibroDetail"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginBottom="16dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_launcher_foreground" />
+
+        <TextView
+            android:id="@+id/lblSinopsisLibro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sinopsis del libro"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calificacion: "
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/lblCalificacionLibro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Calificacion del libro"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/textViewIsbn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ISBN: "
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/lblIsbnLibro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ISBN del libro"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/textViewGenerosLibro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Géneros: "
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/lblGenerosLibroDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Géneros del libro"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp" />
+
+        <Button
+            android:id="@+id/btnEditarLibro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Editar"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/btnEliminarLibro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Eliminar" />
+
+    </LinearLayout>
+
+</ScrollView>

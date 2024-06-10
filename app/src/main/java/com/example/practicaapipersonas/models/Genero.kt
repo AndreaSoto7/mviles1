@@ -1,12 +1,9 @@
 package com.example.practicaapipersonas.models
 
-typealias Generos = ArrayList<Genero>
+import java.io.Serializable
 
 data class Genero(
     var nombre: String
-) {
+):Serializable {
     var id: Int? = null
-    var createdAt: String? = null
-    var updatedAt: String? = null
-    var libros: List<Libro> = emptyList()
 }

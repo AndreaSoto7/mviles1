@@ -1,4 +1,4 @@
-package com.example.practicaapipersonas.ui.viewmodels
+/*package com.example.practicaapipersonas.ui.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -18,35 +18,22 @@ class GeneroDetailViewModel : ViewModel() {
 
     fun saveGenero(nombre: String, id: Int) {
         val genero = Genero(
-            nombre = nombre
+            nombre = nombre,
         )
         if (id != 0) {
-            genero.id = id
             GeneroRepository.updateGenero(genero,
-                success = {
-                    _closeActivity.value = true
-                },
-                failure = {
-                    it.printStackTrace()
-                })
+                success = { _closeActivity.value = true },
+                failure = { error -> error.printStackTrace() })
         } else {
             GeneroRepository.insertGenero(genero,
-                success = {
-                    _closeActivity.value = true
-                },
-                failure = {
-                    it.printStackTrace()
-                })
+                success = { _closeActivity.value = true },
+                failure = { error -> error.printStackTrace() })
         }
     }
 
     fun loadGenero(id: Int) {
         GeneroRepository.getGenero(id,
-            success = {
-                _genero.value = it
-            },
-            failure = {
-                it.printStackTrace()
-            })
+            success = { _genero.value = it },
+            failure = { error -> error.printStackTrace() })
     }
-}
+}*/

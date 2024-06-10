@@ -3,28 +3,24 @@ package com.example.practicaapipersonas.ui.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-//import com.example.practiacapipersonas.repositories.GeneroRepository
-import com.example.practiacapipersonas.repositories.LibroRepository
-import com.example.practicaapipersonas.models.Generos
-import com.example.practicaapipersonas.models.Libros
+import com.example.practiacapipersonas.repositories.GeneroRepository
+import com.example.practicaapipersonas.models.Libro
 import android.util.Log
+import com.example.practicaapipersonas.repositories.LibroRepository
 
 class MainViewModel : ViewModel() {
-    private val _categoryList: MutableLiveData<Libros> by lazy {
-    MutableLiveData<Libros>(Libros())
-}
-val categoryList: LiveData<Libros> get() = _categoryList
+    private val _libroList: MutableLiveData<List<Libro>> by lazy {
+        MutableLiveData<List<Libro>>(emptyList())
+    }
+    val libroList: LiveData<List<Libro>> get() = _libroList
 
     fun fetchListaLibros() {
         Log.d("MainViewModel", "fetchListaLibros() llamado")
         LibroRepository.getLibroList(
             success = { libros ->
                 libros?.let {
-                    it.sortByDescending { libro -> libro.calificacion } // Ordena los libros por calificación
-                    _categoryList.value = it
+                    _libroList.value = it
                     Log.d("MainViewModel", "Libros recibidos: $it")
-                } ?: run {
-                    Log.d("MainViewModel", "La lista de libros está vacía o es nula")
                 }
             },
             failure = {

@@ -16,12 +16,6 @@
         android:theme="@style/Theme.PracticaAPIPersonas"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activities.ProductoListActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activities.GeneroDetailActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.activities.MainActivity"
             android:exported="true">
             <intent-filter>
@@ -30,6 +24,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.activities.LibroDetailActivity"
+            />
     </application>
 
 </manifest>

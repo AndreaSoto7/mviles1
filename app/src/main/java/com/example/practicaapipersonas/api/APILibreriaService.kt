@@ -1,65 +1,46 @@
 package com.example.practicaapipersonas.api
 
-import com.example.practicaapipersonas.models.Genero
-import com.example.practicaapipersonas.models.Generos
 import com.example.practicaapipersonas.models.Libro
-import com.example.practicaapipersonas.models.Libros
+import com.example.practicaapipersonas.models.Genero
+import com.example.practicaapipersonas.models.GeneroLibro
+
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface APILibreriaService {
     @GET("libros")
-    fun getLibros(): Call<Libros>
+    fun getLibros(): Call<List<Libro>>
 
     @GET("libros/{id}")
-    fun getLibroById(
-        @Path("id") id: Int
-    ): Call<Libro?>
+    fun getLibroById(@Path("id") id: Int): Call<Libro>
 
     @POST("libros")
-    fun insertLibro(
-        @Body libro: Libro
-    ): Call<Libro>
+    fun insertLibro(@Body libroData: Libro): Call<Libro>
 
     @PUT("libros/{id}")
-    fun updateLibro(
-        @Body libro: Libro,
-        @Path("id") id: Int
-    ): Call<Libro>
+    fun updateLibro(@Body libroData: Libro, @Path("id") id: Int): Call<Libro>
 
     @DELETE("libros/{id}")
-    fun deleteLibro(
-        @Path("id") id: Int
-    ): Call<Void>
-
+    fun deleteLibro(@Path("id") id: Int): Call<Void>
 
     @GET("generos")
-    fun getGeneros(): Call<Generos>
+    fun getGeneros(): Call<List<Genero>>
 
     @GET("generos/{id}")
-    fun getGeneroById(
-        @Path("id") id: Int
-    ): Call<Genero?>
+    fun getGeneroById(@Path("id") id: Int): Call<Genero>
 
     @POST("generos")
-    fun insertGenero(
-        @Body genero: Genero
-    ): Call<Genero>
+    fun insertGenero(@Body genero: Genero): Call<Genero>
 
     @PUT("generos/{id}")
-    fun updateGenero(
-        @Body genero: Genero,
-        @Path("id") id: Int
-    ): Call<Genero>
+    fun updateGenero(@Body genero: Genero, @Path("id") id: Int): Call<Genero>
 
     @DELETE("generos/{id}")
-    fun deleteGenero(
-        @Path("id") id: Int
-    ): Call<Void>
+    fun deleteGenero(@Path("id") id: Int): Call<Void>
 
+    @HTTP(method = "POST", path = "libro-generos", hasBody = true)
+    fun addGeneroToLibro(@Body libroGenero: GeneroLibro): Call<Void>
+
+    @HTTP(method = "DELETE", path = "libro-generos", hasBody = true)
+    fun removeGeneroFromLibro(@Body libroGenero: GeneroLibro): Call<Void>
 }

@@ -1,7 +1,6 @@
 package com.example.practicaapipersonas.models
 
-data class GeneroxLibro(
-    val id: Int,
+data class GeneroLibro(
     val idLibro: Int,
     val idGenero: Int
 )

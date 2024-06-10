@@ -4,57 +4,54 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.practicaapipersonas.databinding.LibroItemLayoutBinding
-import com.example.practicaapipersonas.databinding.ProductoItemLayoutBinding
 import com.example.practicaapipersonas.models.Libro
 
-class LibroAdapter(var personaList: List<Libro>, val listener: OnProductoClickListener) :
-    RecyclerView.Adapter<LibroAdapter.PersonaViewHolder>() {
+class LibroAdapter(private val libroList: MutableList<Libro>, private val listener: OnLibroClickListener) :
+    RecyclerView.Adapter<LibroAdapter.LibroViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonaViewHolder {
-        val binding =
-            ProductoItemLayoutBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        return PersonaViewHolder(binding.root)
-    }
-
-    override fun getItemCount(): Int {
-        return personaList.size
-    }
-
-    override fun onBindViewHolder(holder: PersonaViewHolder, position: Int) {
-        val persona = personaList[position]
-        holder.bind(persona, listener)
-    }
-
-    fun updateData(personaList: List<Libro>) {
-        this.personaList = personaList
-        notifyDataSetChanged()
-    }
-
-    class PersonaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(producto: Libro, listener: OnProductoClickListener) {
-            val binding = ProductoItemLayoutBinding.bind(itemView)
+    class LibroViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind(libro: Libro, listener: OnLibroClickListener) {
+            val binding = LibroItemLayoutBinding.bind(itemView)
             binding.apply {
-                lblLibroName2.text = producto.nombre
-                lblLibroPrice.text = producto.ISBN.toString()
-//                btnDeleteCategory.setOnClickListener {
-//                    listener.onProductoDelete(producto)
-//                }
-//                lblCategoryName.setOnClickListener {
-//                    listener.onProductoClick(producto)
-//                }
-//                root.setOnClickListener { listener.onProductoClick(producto) }
+                lblLibroName.text = libro.nombre
+                val calificaciontxt = libro.calificacion.toInt()
+                lblCalificacionLibroMain.text = "${calificaciontxt}/10"
+                lblAutorItemMain.text = libro.autor
+                Glide.with(itemView.context)
+                    .load(libro.imagen)
+                    .into(imgLibro)
+                itemView.setOnClickListener{
+                    listener.onLibroClick(libro)
+                }
+                root.setOnClickListener { listener.onLibroClick(libro) }
             }
-
         }
     }
 
-    interface OnProductoClickListener {
-        fun onProductoClick(producto: Libro)
-        fun onProductoDelete(producto: Libro)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LibroViewHolder {
+        val binding = LibroItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return LibroViewHolder(binding.root)
+    }
+
+    override fun getItemCount(): Int {
+        return libroList.size
+    }
+
+    override fun onBindViewHolder(holder: LibroViewHolder, position: Int) {
+        val libro = libroList[position]
+        holder.bind(libro, listener)
+    }
+
+    fun updateData(libroList: List<Libro>) {
+        this.libroList.clear()
+        this.libroList.addAll(libroList)
+        notifyDataSetChanged()
+    }
+
+    interface OnLibroClickListener {
+        fun onLibroClick(libro: Libro)
+        fun onLibroDelete(libro: Libro)
     }
 }

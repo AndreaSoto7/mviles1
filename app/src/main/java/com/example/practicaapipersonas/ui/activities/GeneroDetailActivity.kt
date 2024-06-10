@@ -1,4 +1,4 @@
-package com.example.practicaapipersonas.ui.activities
+/*package com.example.practicaapipersonas.ui.activities
 
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -51,4 +51,4 @@ class GeneroDetailActivity : AppCompatActivity() {
             model.saveGenero(binding.txtGeneroName.editText?.text.toString(), id)
         }
     }
-}
+}*/
